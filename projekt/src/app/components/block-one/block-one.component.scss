@@ -1,0 +1,7 @@
+.block-one {
+  > .heading-2 {
+    @media screen and (width >= 960px) {
+      text-align: center;
+    }
+  }
+}

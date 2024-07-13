@@ -1,0 +1,233 @@
+@import "mixins";
+
+:host {
+  position: relative;
+  z-index: 0;
+}
+
+.footer {
+  position: relative;
+  width: 100%;
+  padding: 1.6rem;
+  margin-top: 12rem;
+  background: var(--gray-3);
+  border-top: 2px solid var(--gray-1);
+
+  @media screen and (width >= 960px) {
+    padding: 1.8rem 6rem;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 1rem;
+
+    @media screen and (width >= 960px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__box {
+    width: fit-content;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 8.7rem;
+
+    @media screen and (width >= 960px) {
+      min-height: 10.7rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 8.7rem;
+      height: 8.7rem;
+      background-color: transparent;
+      border: 1px solid var(--gray-5);
+      transition: border-color 0.2s ease-in-out;
+
+      @media screen and (width >= 960px) {
+        width: 10.7rem;
+        height: 10.7rem;
+      }
+    }
+
+    &:hover {
+      &::before {
+        border-color: var(--primary-color);
+        animation: rotateScaleAnimation 0.8s ease-in-out;
+      }
+      .box {
+        &__text {
+          color: var(--text-color-2);
+        }
+      }
+    }
+
+    .box {
+      position: relative;
+      padding: 0.8rem;
+
+      &__text {
+        font-weight: 500;
+        line-height: 1.2;
+        white-space: nowrap;
+        color: var(--gray-5);
+        transition: color 0.2s ease-in-out;
+        font-size: 2rem;
+
+        @media screen and (width >= 960px) {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+
+  &__logo {
+    display: none;
+    place-self: center;
+
+    @media screen and (width >= 960px) {
+      display: block;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        width: 6rem;
+        height: .1rem;
+        background: var(--gray-5);
+      }
+
+      &__text {
+        font-size: 2.8rem;
+        color: var(--gray-5);
+      }
+    }
+  }
+
+  .btn-footer {
+    place-self: center end;
+  }
+
+  &__action {
+    display: flex;
+    justify-content: flex-end;
+
+    .toggle {
+      width: 100%;
+      max-width: 26rem;
+
+      &__checkbox {
+        display: none;
+
+        &:checked {
+          & + .toggle__button {
+            color: #fff;
+            border-color: #fff;
+
+            &::after {
+              transform: rotate(0);
+              margin-top: -.4rem;
+              border-color: #fff;
+            }
+
+            & + .toggle__options {
+              transform: translateY(-100%);
+              box-shadow: 0px 0px 12px 10px rgba(0, 0, 0, 0.5);
+            }
+          }
+        }
+      }
+
+      &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
+        padding: 1.2rem 3rem;
+        border-radius: 2px;
+        border: 1px solid var(--gray-5);
+        background: transparent;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--text-color-2);
+        text-align: center;
+        cursor: pointer;
+        transition: border-color 0.2s ease-in, color 0.2s ease-in;
+
+        &::after {
+          @include with-arrow;
+        }
+
+        &:hover {
+          color: #fff;
+          border-color: #fff;
+        }
+      }
+
+      &__options {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        right: 1.6rem;
+        max-width: 26rem;
+        width: 100%;
+        padding: 1rem;
+        transform: translateY(0);
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0);
+        transition: all 0.2s ease;
+
+        @media screen and (width >= 960px) {
+          right: 6rem;
+        }
+
+        .option {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          width: 100%;
+          background: none;
+          border: 0;
+          padding: 0.5rem;
+          font-size: 1.6rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: color 0.2s ease-out;
+
+          &::before {
+            @include with-arrow;
+            transform: rotate(270deg);
+            margin-top: 0;
+            border-color: var(--gray-1);
+          }
+
+          &:last-child {
+            border-block-start: none;
+          }
+
+          &:hover {
+            color: var(--primary-color);
+
+            &::before {
+              border-color: var(--primary-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}

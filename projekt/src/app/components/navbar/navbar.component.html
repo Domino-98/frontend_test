@@ -1,0 +1,13 @@
+<nav class="nav">
+  <a routerLink="/" class="nav__logo">
+    <div class="nav__logo-container">
+      <div class="html5-logo"></div>
+    </div>
+  </a>
+  <div class="nav__right">
+    <span class="nav__title">Zadanie <span>rekrutacyjne</span></span>
+    @if (blockStore.personalData$ | async; as personalData) {
+      <span class="nav__personal-data">{{ personalData }}</span>
+    }
+  </div>
+</nav>

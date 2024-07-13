@@ -1,0 +1,27 @@
+:host {
+  width: 100%;
+
+  @media screen and (width >= 440px) {
+    grid-column: -1 / 1;
+  }
+
+  @media screen and (width >= 960px) {
+    grid-column: initial;
+  }
+}
+
+.block-text {
+  > .heading-2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__content {
+    p {
+      font-size: 1.4rem;
+      text-align: center;
+      color: var(--text-color-2);
+    }
+  }
+}

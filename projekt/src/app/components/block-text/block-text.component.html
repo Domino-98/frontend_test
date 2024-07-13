@@ -1,0 +1,9 @@
+<div class="block-text">
+  <h2 class="heading-2">Blok z długą nazwą która sama się przytnie Lorem ipsum dolor sit amet consectetur adipisicing elit. In, mollitia</h2>
+
+  <div class="block-text__content">
+    @for (block of (blockStore.sortedSelectedTextBlocks$ | async); track block) {
+    <p class="content">{{ block }}</p>
+    }
+  </div>
+</div>

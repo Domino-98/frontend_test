@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <ng-container *ngFor="let option of options; let i = index">
+    <label class="radio" [for]="option.value" tabindex="0" (keydown)="handleLabelKeyDown($event, i)">
+      {{ option.label }}
+      <input
+        [id]="option.value"
+        type="radio"
+        formControlName="value"
+        [value]="option.value"
+        [attr.aria-labelledby]="option.value + '-label'"
+        [attr.aria-checked]="form.controls['value'].value === option.value ? 'true' : 'false'"
+        role="radio"
+        tabindex="-1"
+      />
+      <span id="{{ option.value }}-label" class="radio__checkmark"></span>
+    </label>
+  </ng-container>
+</form>

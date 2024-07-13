@@ -1,0 +1,30 @@
+.btn {
+  min-width: 18rem;
+  padding: 1.4rem 5rem;
+  border-radius: 2px;
+  border: 1px solid var(--gray-5);
+  background: transparent;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-color-2);
+  cursor: pointer;
+  transition: border-color 0.2s ease-out, background 0.2s ease-out,
+    color 0.2s ease-out;
+
+  &:hover {
+    color: #fff;
+    border-color: #fff;
+  }
+
+  &--primary {
+    border-color: #fff;
+    &:hover {
+      background: linear-gradient(135deg, #e78301, #ffa229);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+  }
+}

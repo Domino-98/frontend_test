@@ -1,13 +1,3 @@
-:host::ng-deep {
-  .block-two__actions button {
-    width: 100%;
-
-    @media screen and (width >= 440px) {
-      width: initial;
-    }
-  }
-}
-
 .block-two {
   > .heading-2 {
     @media screen and (width >= 440px) {

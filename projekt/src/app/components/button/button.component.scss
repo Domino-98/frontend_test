@@ -11,6 +11,11 @@
   cursor: pointer;
   transition: border-color 0.2s ease-out, background 0.2s ease-out,
     color 0.2s ease-out;
+  width: 100%;
+
+  @media screen and (width >= 440px) {
+      width: fit-content;
+  }
 
   &:not(.btn--info):not(.btn--danger):hover {
     color: #fff;
@@ -39,10 +44,10 @@
   }
 
   &--info, &--danger {
-    min-width: 14rem;
+    min-width: 16rem;
     border: 0;
-    border-radius: 0;
-    padding: 1rem 1.8rem;
+    border-radius: 5px;
+    padding: 1.1rem 1.8rem;
     font-size: 1.6rem;
     font-weight: 500;
     color: #fff;

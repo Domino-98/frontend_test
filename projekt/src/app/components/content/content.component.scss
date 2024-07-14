@@ -6,8 +6,20 @@
 }
 
 :host::ng-deep {
-  .content {
+  .item {
+    &__actions {
+      display: flex;
+
       app-button {
+        > button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: auto;
+          border-radius: 0;
+          width: 4.4rem;
+          height: 3rem;
+        }
         &:first-of-type {
           > button {
             border-top-left-radius: 5px;
@@ -19,21 +31,6 @@
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
           }
-        }
-      }
-  }
-
-  .item {
-    &__actions {
-      display: flex;
-      app-button {
-        > button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-width: auto;
-          width: 4.4rem;
-          height: 3rem;
         }
       }
     }
@@ -48,7 +45,7 @@
     flex-direction: column;
     gap: 1rem;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 2rem;
 
     .not-found {
       margin-top: 1rem;
@@ -82,5 +79,12 @@
   &__actions {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media screen and (width >= 440px) {
+      flex-direction: row;
+      gap: 2rem;
+    }
   }
 }

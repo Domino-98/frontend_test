@@ -1,7 +1,7 @@
-<div class="block-text">
+<div class="block-content">
   <h2 class="heading-2">Blok z długą nazwą która sama się przytnie Lorem ipsum dolor sit amet consectetur adipisicing elit. In, mollitia</h2>
 
-  <div class="block-text__content">
+  <div class="block-content__container">
     @if (blockStore.sortedSelectedContents$ | async; as contents) {
       @if (contents.length) {
         @for (content of contents; track content.id) {

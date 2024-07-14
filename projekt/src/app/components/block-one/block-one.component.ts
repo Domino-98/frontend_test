@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Option, OptionValue } from '@app/models/option';  // Adjust the path according to your project structure
+import { Option, OptionValue } from '@app/models/option';
 import { RadioGroupInputComponent } from '@components/radio-group-input/radio-group-input.component';
 
 @Component({

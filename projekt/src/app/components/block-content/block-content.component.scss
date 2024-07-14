@@ -10,14 +10,14 @@
   }
 }
 
-.block-text {
+.block-content {
   > .heading-2 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  &__content {
+  &__container {
     p {
       word-break: break-word;
       font-size: 1.4rem;

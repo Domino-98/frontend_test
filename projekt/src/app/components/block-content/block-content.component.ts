@@ -3,12 +3,12 @@ import { Component, inject } from '@angular/core';
 import { BlockStore } from '@app/store/block.store';
 
 @Component({
-  selector: 'app-block-text',
+  selector: 'app-block-content',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './block-text.component.html',
-  styleUrl: './block-text.component.scss'
+  templateUrl: './block-content.component.html',
+  styleUrl: './block-content.component.scss'
 })
-export class BlockTextComponent {
+export class BlockContentComponent {
   blockStore = inject(BlockStore);
 }

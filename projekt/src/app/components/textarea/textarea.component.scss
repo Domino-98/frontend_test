@@ -10,10 +10,14 @@
   &__field {
     width: 100%;
     padding: 1rem;
-    font-size: 1.2rem;
     border: 1px solid var(--gray-5);
     border-radius: 4px;
     resize: vertical;
+    font-size: 1.4rem;
+
+    &.ng-touched.ng-invalid {
+      border-color: var(--red-1);
+    }
   }
 
   &__errors {

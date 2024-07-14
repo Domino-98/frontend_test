@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, inject, Input, OnInit, Output } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { NgForOf } from '@angular/common';
-import { BlockStore } from '@app/block.store';
+import { BlockStore } from '@app/store/block.store';
 
 @Component({
   selector: 'app-radio-group-input',

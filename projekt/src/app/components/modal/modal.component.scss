@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 1000;
 
   &__overlay {
     position: absolute;
@@ -39,7 +39,7 @@
   }
 
   &__title {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     margin: 0;
     color: var(--gray-1);
   }
@@ -57,9 +57,8 @@
   }
 
   &__body {
-    margin-bottom: 2rem;
-    padding: 2rem;
-    font-size: 2rem;
+    padding: 2.4rem;
+    font-size: 1.8rem;
     text-align: center;
   }
 }

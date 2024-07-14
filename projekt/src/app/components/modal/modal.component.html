@@ -1,12 +1,12 @@
-<div class="modal">
+<div *ngIf="showModal" @openCloseFade class="modal" role="dialog" aria-modal="true" [attr.aria-labelledby]="title">
   <div class="modal__overlay" (click)="closeModal()"></div>
   <div class="modal__content">
     <div class="modal__header">
       <h4 class="modal__title">{{ title }}</h4>
-      <button class="modal__close-button" (click)="closeModal()">&#10006;</button>
+      <button class="modal__close-button" (click)="closeModal()" aria-label="Zamknij modal" title="Zamknij modal">&#10006;</button>
     </div>
     <div class="modal__body">
-      <p>{{ modalContent }}</p>
+      <ng-content></ng-content>
     </div>
   </div>
 </div>

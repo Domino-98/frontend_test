@@ -1,11 +1,11 @@
 <div class="block-two">
   <h2 class="heading-2">Blok drugi</h2>
   <div class="block-two__actions">
-    <app-button [text]="'Zastąp'" [btnClass]="'btn--primary'" (onClick)="handleBlockAction('replace')" aria-label="Zastąp" aria-labelledby="replace-button-label"></app-button>
-    <app-button [text]="'Doklej'" [btnClass]="'btn--primary'" (onClick)="handleBlockAction('append')" aria-label="Doklej" aria-labelledby="append-button-label"></app-button>
+    <app-button [text]="'Zastąp'" [btnClass]="'btn--primary'" (onClick)="handleContentAction('replace')" [ariaLabel]="'Zastąp'"></app-button>
+    <app-button [text]="'Doklej'" [btnClass]="'btn--primary'" (onClick)="handleContentAction('append')" [ariaLabel]="'Doklej'"></app-button>
   </div>
 
-  @if (modalOpen) {
-    <app-modal [title]="'Info'" [modalContent]="modalContent" (closeModalEvent)="closeModal($event)"></app-modal>
-  }
+  <app-modal [showModal]="modalOpen" [title]="'Info'" (closeModalEvent)="closeModal()">
+    {{ modalContent }}
+  </app-modal>
 </div>

@@ -11,9 +11,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input() text: string = '';
   @Input() btnClass: string = '';
+  @Input() btnType: 'button' | 'submit' = 'button';
+  @Input() title?: string;
   @Output() onClick = new EventEmitter<string>();
 
   emitEvent() {
     this.onClick.emit();
+  }
+
+  get computedTitle(): string {
+    return this.title ?? this.text;
   }
 }

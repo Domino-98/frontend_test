@@ -1,0 +1,20 @@
+<div class="textarea">
+  <label [for]="controlName" class="textarea__label">{{ label }}</label>
+  <textarea
+    [id]="controlName"
+    [formControl]="control"
+    class="textarea__field"
+    [rows]="rows"
+    [attr.aria-describedby]="controlInvalid ? controlName + '-error' : null"
+    [attr.aria-invalid]="controlInvalid"
+    [attr.aria-required]="isRequired"
+  >
+  </textarea>
+  @if (controlInvalid) {
+    <div class="textarea__errors">
+      @if (requiredError) {
+        <div class="error">Treść jest wymagana.</div>
+      }
+    </div>
+  }
+</div>

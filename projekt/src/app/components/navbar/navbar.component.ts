@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BlockStore } from '@app/block.store';
+import { BlockStore } from '@app/store/block.store';
 
 @Component({
   selector: 'app-navbar',

@@ -14,11 +14,11 @@
     </div>
     <div class="footer__action">
       <div class="toggle">
-        <input type="checkbox" id="toggle" class="toggle__checkbox" [(ngModel)]="checkboxChecked">
-        <label for="toggle" class="btn toggle__button" tabindex="0" aria-label="Pokaż ustawienia" aria-labelledby="settings-button-label" (keydown.enter)="toggleCheckbox()">Pokaż</label>
+        <input type="checkbox" id="toggle" class="toggle__checkbox" [(ngModel)]="checkboxChecked" aria-hidden="true">
+        <label for="toggle" class="btn toggle__button" tabindex="0" [ariaPressed]="checkboxChecked" role="button"  aria-label="Pokaż ustawienia" (keydown.enter)="toggleCheckbox()">Pokaż</label>
         <div class="toggle__options">
-          <button (click)="handleReset()" class="option" [tabindex]="checkboxChecked ? '0' : '-1'" aria-label="Zresetuj ustawienia" aria-labelledby="reset-button-label">Zresetuj ustawienia</button>
-          <button (click)="handlePersonalData()" class="option" [tabindex]="checkboxChecked ? '0' : '-1'" aria-label="Pokaż dane osobowe" aria-labelledby="personal-data-button-label">Pokaż dane osobowe</button>
+          <button (click)="handleReset()" class="option" [tabindex]="checkboxChecked ? '0' : '-1'" aria-label="Zresetuj ustawienia">Zresetuj ustawienia</button>
+          <button (click)="handlePersonalData()" class="option" [tabindex]="checkboxChecked ? '0' : '-1'" aria-label="Pokaż dane osobowe">Pokaż dane osobowe</button>
         </div>
       </div>
     </div>

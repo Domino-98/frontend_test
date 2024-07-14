@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BlockStore } from '@app/block.store';
+import { BlockStore } from '@app/store/block.store';
 import { ButtonComponent } from '@components/button/button.component';
 
 @Component({

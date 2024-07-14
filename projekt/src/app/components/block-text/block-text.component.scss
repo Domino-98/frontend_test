@@ -19,6 +19,7 @@
 
   &__content {
     p {
+      word-break: break-word;
       font-size: 1.4rem;
       text-align: center;
       color: var(--text-color-2);

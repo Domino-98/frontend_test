@@ -1,0 +1,28 @@
+.textarea {
+  display: block;
+  margin-bottom: 2rem;
+
+  &__label {
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  &__field {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 1px solid var(--gray-5);
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  &__errors {
+    display: flex;
+    flex-direction: column;
+
+    .error {
+      font-size: 1.4rem;
+      color: var(--red-1);
+    }
+  }
+}

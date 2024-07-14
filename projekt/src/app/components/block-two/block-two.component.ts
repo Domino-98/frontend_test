@@ -1,10 +1,11 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { ButtonComponent } from '@components/button/button.component';
-import { Action } from '@app/models/action';
-import { BlockStore } from '@app/block.store';
+import { BlockStore } from '@app/store/block.store';
 import { OptionValue } from '@app/models/option';
 import { ModalComponent } from '../modal/modal.component';
 import { combineLatest } from 'rxjs';
+import { Content } from '@app/models/content';
+import { BlockAction } from '@app/models/action';
 
 @Component({
   selector: 'app-block-two',
@@ -14,7 +15,7 @@ import { combineLatest } from 'rxjs';
   styleUrl: './block-two.component.scss',
 })
 export class BlockTwoComponent {
-  @Output() selectedAction = new EventEmitter<Action>();
+  @Output() selectedAction = new EventEmitter<BlockAction>();
 
   modalOpen = false;
   modalContent: string = '';
@@ -22,24 +23,24 @@ export class BlockTwoComponent {
   blockStore = inject(BlockStore);
 
   radioValue: OptionValue | null = null;
-  allTextBlocks: string[] = [];
-  selectedTextBlocks: string[] = [];
-  availableTextBlocks: string[] = [];
-  sortedSelectedTextBlocks: string[] = [];
+  allContents: Content[] = [];
+  selectedContents: Content[] = [];
+  availableContents: Content[] = [];
+  sortedSelectedContents: Content[] = [];
 
   constructor() {
     combineLatest([
       this.blockStore.radioValue$,
-      this.blockStore.allTextBlocks$,
-      this.blockStore.selectedTextBlocks$,
-      this.blockStore.availableTextBlocks$,
-      this.blockStore.sortedSelectedTextBlocks$
-    ]).subscribe(([radioValue, allTextBlocks, selectedTextBlocks, availableTextBlocks, sortedSelectedTextBlocks]) => {
+      this.blockStore.allContents$,
+      this.blockStore.selectedContents$,
+      this.blockStore.availableContents$,
+      this.blockStore.sortedSelectedContents$
+    ]).subscribe(([radioValue, allContents, selectedContents, availableContents, sortedSelectedContents]) => {
       this.radioValue = radioValue;
-      this.allTextBlocks = allTextBlocks;
-      this.selectedTextBlocks = selectedTextBlocks;
-      this.availableTextBlocks = availableTextBlocks;
-      this.sortedSelectedTextBlocks = sortedSelectedTextBlocks;
+      this.allContents = allContents;
+      this.selectedContents = selectedContents;
+      this.availableContents = availableContents;
+      this.sortedSelectedContents = sortedSelectedContents;
     });
   }
 
@@ -48,50 +49,62 @@ export class BlockTwoComponent {
     this.modalOpen = true;
   }
 
-  closeModal(event: boolean) {
+  closeModal() {
     this.modalOpen = false;
   }
 
-  handleBlockAction(action: Action) {
+  handleContentAction(action: BlockAction) {
     if (!this.radioValue) {
       this.openModal('Najpierw wybierz opcję.');
       return;
     }
 
-    let textBlock = this.getTextBlock(action);
+    let content = this.getContent(action);
 
-    if (!textBlock) {
+    if (content === 'not-found') {
+      this.openModal('Brak wartości do doklejenia.');
+      return;
+    } else if (content === 'exists') {
       this.openModal('Wartość już została doklejona do bloku.');
       return;
     }
 
     if (action === 'replace')
-      this.blockStore.setTextBlocks([textBlock]);
+      this.blockStore.setSelectedContents([content as Content]);
     else if (action === 'append')
-      this.blockStore.appendTextBlock(textBlock);
+      this.blockStore.appendContent(content as Content);
   }
 
-  getTextBlock(action: Action): string {
-    let textBlock = '';
+  getContent(action: BlockAction): Content | string | undefined {
+    if (!this.allContents.length)
+      return 'not-found';
+
+    let content: Content | undefined;
 
     switch (this.radioValue) {
       case OptionValue.First:
-        textBlock = this.allTextBlocks[0];
+        content = this.allContents[0];
         break;
       case OptionValue.Second:
-        textBlock = this.allTextBlocks[1];
+        content = this.allContents[1];
         break;
       case OptionValue.Random:
-        textBlock = this.allTextBlocks[Math.floor(Math.random() * this.allTextBlocks.length)];
+        content = this.getRandomValue(this.availableContents) ?? this.getRandomValue(this.allContents)
         break;
     }
 
-    const blockExists = this.selectedTextBlocks.some(block => block === textBlock);
+    if (content) {
+      const blockExists = this.selectedContents.some(block => block.id === content?.id);
 
-    textBlock = blockExists && action === 'append'
-      ? (this.radioValue === OptionValue.Random ? this.availableTextBlocks[Math.floor(Math.random() * this.availableTextBlocks.length)] : '')
-      : textBlock;
+      return (blockExists && action === 'append')
+        ? 'exists'
+        : content;
+    }
 
-    return textBlock;
+    return content;
+  }
+
+  getRandomValue(array: any[]) {
+    return array[Math.floor(Math.random() * array.length)];
   }
 }

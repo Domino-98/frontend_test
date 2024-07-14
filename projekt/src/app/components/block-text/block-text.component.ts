@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { BlockStore } from '@app/block.store';
+import { BlockStore } from '@app/store/block.store';
 
 @Component({
   selector: 'app-block-text',

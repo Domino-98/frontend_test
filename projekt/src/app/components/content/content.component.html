@@ -1,0 +1,32 @@
+<div class="content">
+  <div class="content__actions">
+    <app-button [text]="'Dodaj treść'" [btnClass]="'btn--info'" (onClick)="openModal('Dodaj treść')"></app-button>
+    <app-button [text]="'Usuń wszystkie'" [btnClass]="'btn--danger'" (onClick)="handleContentAction('deleteAll')" [ariaLabel]="'Usuń wszystkie'"></app-button>
+  </div>
+
+  <ul class="content__list">
+    @if (blockStore.allContents$ | async; as contents) {
+      @if (contents.length) {
+        @for (content of contents; track content.id) {
+        <li class="content__item">
+          <p class="item">{{ content.content }}</p>
+          <div class="item__actions">
+            <app-button [text]="'&#9998;'" [btnClass]="'btn--info'" (onClick)="openModal('Edytuj treść', content)" [ariaLabel]="'Edytuj'" [title]="'Edytuj treść'"></app-button>
+            <app-button [text]="'&#10006;'" [btnClass]="'btn--danger'" (onClick)="handleContentAction('delete', content.id)" [ariaLabel]="'Usuń'" [title]="'Usuń treść'"></app-button>
+          </div>
+        </li>
+        }
+      }
+      @else {
+        <p class="not-found" role="alert">Brak dostępnych treści.</p>
+      }
+    }
+  </ul>
+
+  <app-modal [showModal]="modalOpen" [title]="modalTitle" (closeModalEvent)="closeModal()">
+    <form (ngSubmit)="handleContentAction(activeContent ? 'edit' : 'add', activeContent?.id)" [formGroup]="form" class="form">
+      <app-textarea label="Treść:" controlName="content" [control]="$any(form.get('content'))" [isRequired]="true"></app-textarea>
+      <app-button [btnType]="'submit'" [text]="activeContent ? 'Edytuj' : 'Dodaj'" [btnClass]="'btn--secondary'" [ariaLabel]="activeContent ? 'Edytuj treść' : 'Dodaj treść'"></app-button>
+    </form>
+  </app-modal>
+</div>
